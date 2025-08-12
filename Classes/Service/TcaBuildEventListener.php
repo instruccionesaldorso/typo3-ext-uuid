@@ -20,8 +20,9 @@ class TcaBuildEventListener
 
     public function addUuidFieldsToTca(AfterTcaCompilationEvent $event): void
     {
-        $this->service->addUuidFieldsToTca($GLOBALS['TCA']);
+        $loadedTca = $event->getTca();
+        $this->service->addUuidFieldsToTca($loadedTca);
 
-        $event->setTca($GLOBALS['TCA']);
+        $event->setTca($loadedTca);
     }
 }
